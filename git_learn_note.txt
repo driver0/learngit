@@ -1,0 +1,77 @@
+1.git简介
+    （1）git是分布式版本控制系统
+2.如何安装git
+    方法一：sudo apt-get install git 
+    方法二：(1)从官网下载源码解压
+            (2)./config
+            (3)make
+            (4)sudo make install
+3.创建版本库：版本库又名仓库，英文repository(可以理解为一个目录，这个目录里的所有文件都可以被Git管理起来。
+        （1）makedir 目录（仓库）
+        （2）cd 目录                       ：为工作空间
+        （3）git init
+        （4）ls -ah 有一个.git的文件       : 为版本库
+        （5）此时：目录为工作空间，.git为
+4.把文件添加到版本库里：
+    （1）git add 文件名 
+    （2）git commit -m “本次提交说明
+5.版本回退：
+    （1）git log 显示历史版本的修改记录
+    （2）git log -pretty=oneline 只显示每条历史记录的第一行
+    （3）在git中HEAD表示当前版本，HEAD^表示上一个版本，HEEAD^^表示上上一个版本，HEAD～100表示往上的100个版本。
+    （4）git reset --hard HEAD^
+         git reset --hard HEAD^^
+         git reset --hard 指定的commit ID
+     (5) git reflog 来显示历史命令
+6.工作区和暂存区
+    （1）工作区:就是仓库目录
+    （2）版本库：
+        .git:就是git的版本库。
+        .git目录中的index（stage）为暂存区
+        .git目录中还有git为我们自动创建的第一个分支master，以及只想master的一个指针HEAD
+    （3）想远程仓库推送的就是HEAD指针指向的分支指向的内容
+7.git管理的是修改
+8.撤销修改：
+    （1）git checkout --file 可以丢弃工作区的修改
+    （2）git reset HEAD file 可以把暂存区的修改撤掉（unstage）
+9.删除文件：
+    (1)git rm file
+    (2)git commit -m "remove file"
+    (3)git checkout -- file
+10.远曾仓库：
+    （1）创建SSH KEY:ssh-keygen -t rsa -C "youremail"      产生的.ssh目录下的两个文件id_rsa(密钥)和id_rsa.pub(公钥)
+    （2）登录Github-》打开Account setting-》SSH Keys页面 --》Add SSH Key -》在Key文本框里黏贴id_rsa.pub
+    ** (3) 将本地仓库与远程仓库进行关联：git remote add origin git@github.com:你的github用户名/你在github上的仓库
+    **（4）将本地库的所有内容推送到远程库上：git push -u origin master
+    ** (5) SSH警告：第一次使用SSH连接，会出现警告。
+    (6)从远程克隆：先创建远程库，从远程克隆仓库到本地
+        git clone git@github.com:你的github用户名/你在github上的仓库
+11.创建与合并分支
+    （1）创建并切换到新分支：git checkout -b 新分支的名字
+    （2）创建新分支：        git branch 新分支的名字
+    （3）切换到相应的分之:   git checkout 相应分支的名字
+    （4）将当前HEAD所指的当前分支与指定的分支合并：git merge 指定分支的名字
+    （5）删除分支：git branch -d 分支的名字
+12.解决冲突：冲突发生后：git status 根据状态提示去手动修改。
+13.多人协作：
+    （1）查看远程库的信息：git remote
+    （2）查看远程库的详细信息： git remote -V
+     (3) 推送分支：git push origin 要推送的分支
+    （4）抓取分支：git clone git@github.com:你的github用户名/你在github上的仓库
+     (5) 查看分支：git branch 
+     (6) 创建远程分支到本地：git checkout -b 要创建的分支 origin/dev
+14.标签：
+    （1）创建标签：git tag v1.0(标签）
+     (2) 查看标签：git tag
+    （3）查看标签信息：git show 标签名称
+    （4）删除标签：git tag -d 要删除的标签名称
+    （5）推送某个标签到远程：git push origin 要推送的标签名称
+    （6）推送尚未推送的所有本地标签
+    （7）同时删除本地与远程标签：       先从本地删除：git tag -d 要删除的标签
+                                        再从远程删除：git push origin :refs/tags/要删除的远程标签名。
+15.配置别名：git config --global alias.最终的名字 要配置别名的名字
+     eg：git config --global alias.last 'log -l'
+16.配置文件：
+    （1）只对当前仓库起作用的别名在:.git/config
+     (2) 对当前用户起作用的别名在：~/.gitconfig
+
