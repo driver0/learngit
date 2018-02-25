@@ -1,0 +1,26 @@
+1.git简介
+    （1）git是分布式版本控制系统
+2.如何安装git
+    方法一：sudo apt-get install git 
+    方法二：(1)从官网下载源码解压
+            (2)./config
+            (3)make
+            (4)sudo make install
+3.创建版本库：版本库又名仓库，英文repository(可以理解为一个目录，这个目录里的所有文件都可以被Git管理起来。
+        （1）makedir 目录（仓库）
+        （2）cd 目录                       ：为工作空间
+        （3）git init
+        （4）ls -ah 有一个.git的文件       : 为版本库
+        （5）此时：目录为工作空间，.git为
+4.把文件添加到版本库里：
+    （1）git add 文件名 
+    （2）git commit -m “本次提交说明
+5.版本回退：
+    （1）git log 显示历史版本的修改记录
+    （2）git log -pretty=oneline 只显示每条历史记录的第一行
+    （3）在git中HEAD表示当前版本，HEAD^表示上一个版本，HEEAD^^表示上上一个版本，HEAD～100表示往上的100个版本。
+    （4）git reset --hard HEAD^
+         git reset --hard HEAD^^
+         git reset --hard 指定的commit ID
+     (5) git reflog 来显示历史命令
+
